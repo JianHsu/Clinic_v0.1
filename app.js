@@ -8,6 +8,7 @@ var fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var dbconfig = require('./config/database');
 
 var app = express();
 
@@ -30,12 +31,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 //Mysql database.
 var mysql = require("mysql");
 
-var con = mysql.createConnection({
-	host : "localhost",
-	user : "root",
-	password : "12344567",
-	database : "world"
-});
+var con = mysql.createConnection(dbconfig.connection);
 
 con.connect(function(err){
 	if (err){
